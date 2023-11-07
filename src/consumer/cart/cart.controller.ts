@@ -20,7 +20,7 @@ import {
 } from './dtos/cart.dto';
 import { responseHandler } from '../../utils/response.handler';
 import { messageConstants } from '../../constants/message.constants';
-import { User } from 'src/utils/userDecorator';
+import { User } from '../../utils/userDecorator';
 
 @Controller('consumer/cart')
 export class CartController {
@@ -38,11 +38,12 @@ export class CartController {
 
   @Post('/')
   async addCartProduct(
+    @User('_id') consumerId: string,
     @Body(new AddCartProductValidatorPipe())
     addCartProductDTO: AddCartProductDTO,
   ) {
     try {
-      await this.cartService.addCartProduct(addCartProductDTO);
+      await this.cartService.addCartProduct(consumerId, addCartProductDTO);
       return responseHandler(200, messageConstants.CART_PRODUCT_ADDED, true);
     } catch (err) {
       return responseHandler(err.status, err.message);
@@ -51,13 +52,13 @@ export class CartController {
 
   @Get('/:cartProductId')
   async getCartProduct(
-    @Param(new CartProductIdValidatorPipe()) cartProductIdDTO: CartProductIdDTO,
     @User('_id') consumerId: string,
+    @Param(new CartProductIdValidatorPipe()) cartProductIdDTO: CartProductIdDTO,
   ) {
     try {
       const cartProduct = await this.cartService.getCartProduct(
-        cartProductIdDTO,
         consumerId,
+        cartProductIdDTO,
       );
       return responseHandler(200, messageConstants.SUCCESS, cartProduct);
     } catch (err) {
@@ -67,12 +68,14 @@ export class CartController {
 
   @Put('/:cartProductId')
   async updateCartProduct(
+    @User('_id') consumerId: string,
     @Param(new CartProductIdValidatorPipe()) cartProductIdDTO: CartProductIdDTO,
     @Body(new UpdateCartProductValidatorPipe())
     updateCartProductDTO: UpdateCartProductDTO,
   ) {
     try {
-      await this.cartService.updateCartProductById(
+      await this.cartService.updateCartProduct(
+        consumerId,
         cartProductIdDTO,
         updateCartProductDTO,
       );
@@ -84,10 +87,11 @@ export class CartController {
 
   @Delete('/:cartProductId')
   async deleteCartProduct(
+    @User('_id') consumerId: string,
     @Param(new CartProductIdValidatorPipe()) cartProductIdDTO: CartProductIdDTO,
   ) {
     try {
-      await this.cartService.deleteCartProductById(cartProductIdDTO);
+      await this.cartService.deleteCartProduct(consumerId, cartProductIdDTO);
       return responseHandler(200, messageConstants.CART_PRODUCT_DELETED, true);
     } catch (err) {
       return responseHandler(err.status, err.message);

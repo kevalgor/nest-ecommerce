@@ -1,8 +1,7 @@
 import * as Joi from 'joi';
 
 export const addProductToWishlistSchema = Joi.object({
-  product: Joi.string().trim().required(),
-  consumer: Joi.string().trim().required(),
+  productId: Joi.string().trim().required(),
 }).options({
   abortEarly: true,
 });

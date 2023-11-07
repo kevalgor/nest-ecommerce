@@ -26,11 +26,15 @@ export class WishlistController {
 
   @Post('/')
   async addProductToWishlist(
+    @User('_id') consumerId: string,
     @Body(new AddProductToWishlistValidatorPipe())
     addProductToWishlistDTO: AddProductToWishlistDTO,
   ) {
     try {
-      await this.wishlistService.addProductToWishlist(addProductToWishlistDTO);
+      await this.wishlistService.addProductToWishlist(
+        consumerId,
+        addProductToWishlistDTO,
+      );
       return responseHandler(
         200,
         messageConstants.PRODUCT_ADDED_TO_WISHLIST,
@@ -43,13 +47,13 @@ export class WishlistController {
 
   @Get('/:wishlistId')
   async getWishlistProduct(
-    @Param(new WishlistIdValidatorPipe()) wishlistIdDTO: WishlistIdDTO,
     @User('_id') consumerId: string,
+    @Param(new WishlistIdValidatorPipe()) wishlistIdDTO: WishlistIdDTO,
   ) {
     try {
       const wishlistProduct = await this.wishlistService.getWishlistProduct(
-        wishlistIdDTO,
         consumerId,
+        wishlistIdDTO,
       );
       return responseHandler(200, messageConstants.SUCCESS, wishlistProduct);
     } catch (err) {
@@ -59,10 +63,14 @@ export class WishlistController {
 
   @Delete('/:wishlistId')
   async deleteProductFromWishlist(
+    @User('_id') consumerId: string,
     @Param(new WishlistIdValidatorPipe()) wishlistIdDTO: WishlistIdDTO,
   ) {
     try {
-      await this.wishlistService.deleteProductFromWishlist(wishlistIdDTO);
+      await this.wishlistService.deleteProductFromWishlist(
+        consumerId,
+        wishlistIdDTO,
+      );
       return responseHandler(
         200,
         messageConstants.PRODUCT_DELETED_FROM_WISHLIST,

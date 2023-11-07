@@ -1,6 +1,5 @@
 export class AddProductToWishlistDTO {
-  product: string;
-  consumer: string;
+  productId: string;
 }
 
 export class WishlistIdDTO {

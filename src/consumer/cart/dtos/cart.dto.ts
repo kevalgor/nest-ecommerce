@@ -1,6 +1,5 @@
 export class AddCartProductDTO {
-  product: string;
-  consumer: string;
+  productId: string;
   quantity: number;
 }
 

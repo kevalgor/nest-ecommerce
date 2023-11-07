@@ -1,6 +1,5 @@
 export class BuyProductDTO {
   product: string;
-  consumer: string;
   quantity: number;
   deliveryAddress: string;
   orderAmount: number;

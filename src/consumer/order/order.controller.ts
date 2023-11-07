@@ -25,11 +25,12 @@ export class OrderController {
 
   @Post('/')
   async buyProduct(
+    @User('_id') consumerId: string,
     @Body(new BuyProductValidatorPipe())
     buyProductDTO: BuyProductDTO,
   ) {
     try {
-      await this.orderService.buyProduct(buyProductDTO);
+      await this.orderService.buyProduct(consumerId, buyProductDTO);
       return responseHandler(200, messageConstants.PRODUCT_PURCHASED, true);
     } catch (err) {
       return responseHandler(err.status, err.message);
@@ -38,12 +39,12 @@ export class OrderController {
 
   @Get('/:orderId')
   async getOrder(
+    @User('_id') consumerId: string,
     @Param(new OrderIdValidatorPipe())
     orderIdDTO: OrderIdDTO,
-    @User('_id') consumerId: string,
   ) {
     try {
-      const order = await this.orderService.getOrder(orderIdDTO, consumerId);
+      const order = await this.orderService.getOrder(consumerId, orderIdDTO);
       return responseHandler(200, messageConstants.SUCCESS, order);
     } catch (err) {
       return responseHandler(err.status, err.message);

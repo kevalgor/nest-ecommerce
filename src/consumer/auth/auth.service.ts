@@ -6,8 +6,8 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
-import { ConsumerDocument } from '../schemas/consumer.schema';
-import { ConsumerLoginDTO, ConsumerSignupDTO } from './dtos/auth.dto';
+import { ConsumerDocument } from '../../schemas/consumer.schema';
+import { ConsumerSignupDTO, ConsumerLoginDTO } from './dtos/auth.dto';
 import { messageConstants } from '../../constants/message.constants';
 
 @Injectable()
@@ -55,7 +55,7 @@ export class AuthService {
       role: 'consumer',
     };
     const token = await this.jwtService.signAsync(payload, {
-      secret: process.env.JWT_SECRET_KEY,
+      secret: process.env.JWT_CONSUMER_SECRET_KEY,
       expiresIn: process.env.JWT_EXPIRY_TIME,
     });
     const result = {

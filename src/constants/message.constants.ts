@@ -6,13 +6,23 @@ export const messageConstants = {
   // general success message
   SUCCESS: 'Success',
 
-  // consumer related success messages
+  // common auth related success message
   SIGNUP_SUCCESS: 'Signup successful',
   LOGIN_SUCCESS: 'Login successful',
+  PASSWORD_UPDATED: 'Password updated successfully',
+
+  // consumer related success messages
   CONSUMER_PROFILE_UPDATED: 'Consumer profile updated successfully',
   CONSUMER_DELETED: 'Consumer deleted successfully',
 
-  PASSWORD_UPDATED: 'Password updated successfully',
+  // vendor related success messages
+  VENDOR_PROFILE_UPDATED: 'Vendor profile updated successfully',
+  VENDOR_DELETED: 'Vendor deleted successfully',
+
+  // product related success messages
+  PRODUCT_ADDED: 'Product added successfully',
+  PRODUCT_UPDATED: 'Product updated successfully',
+  PRODUCT_DELETED: 'Product deleted successfully',
 
   // cart related success messages
   CART_PRODUCT_ADDED: 'Cart product added successfully',
@@ -30,17 +40,23 @@ export const messageConstants = {
    * ------ fail response messages ------
    */
 
-  // consumer related fail messages
-  CONSUMER_ALREADY_EXIST: 'Consumer already exist',
+  // common auth related fail messages
   INVALID_CREDENTIALS: 'Invalid credentials',
-  CONSUMER_NOT_EXIST: 'Consumer not exist',
   UNAUTHORIZED: 'You are not authorized',
   FORBIDDEN: 'You are not allow to access',
-
   PASSWORD_INCORRECT: 'Password is incorrect',
+
+  // consumer related fail messages
+  CONSUMER_ALREADY_EXIST: 'Consumer already exist',
+  CONSUMER_NOT_EXIST: 'Consumer not exist',
+
+  // vendor related fail messages
+  VENDOR_ALREADY_EXIST: 'Vendor already exist',
+  VENDOR_NOT_EXIST: 'Vendor not exist',
 
   // product related fail messages
   PRODUCT_NOT_EXIST: 'Product not exist',
+  BOOKED_ORDER_OF_PRODUCT: 'There are booked orders of this product',
 
   // cart related fail messages
   CART_PRODUCT_NOT_EXIST: 'Cart product not exist',

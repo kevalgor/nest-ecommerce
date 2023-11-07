@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ProductIdDTO } from './dtos/product.dto';
-import { Product, ProductDocument } from '../product/schemas/product.schema';
+import { Product, ProductDocument } from '../../schemas/product.schema';
 import { messageConstants } from '../../constants/message.constants';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class ProductService {
 
   async getProducts(): Promise<Product[]> {
     const products = await this.productModel
-      .find()
+      .find({ deletedAt: { $eq: null } })
       .populate({ path: 'vendor', select: 'name email mobile shopAddress' });
     return products;
   }
@@ -23,6 +23,7 @@ export class ProductService {
     const product = await this.productModel
       .findOne({
         _id: productIdDTO.productId,
+        deletedAt: { $eq: null },
       })
       .populate({ path: 'vendor', select: 'name email mobile shopAddress' });
     if (!product) {

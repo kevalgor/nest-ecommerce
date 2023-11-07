@@ -4,7 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { ConsumerSchema } from '../schemas/consumer.schema';
+import { ConsumerSchema } from '../../schemas/consumer.schema';
 
 @Module({
   imports: [
@@ -26,7 +26,7 @@ import { ConsumerSchema } from '../schemas/consumer.schema';
     ]), // Setup the mongoose module to use the consumer schema,
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET_KEY,
+      secret: process.env.JWT_CONSUMER_SECRET_KEY,
       signOptions: { expiresIn: process.env.JWT_EXPIRY_TIME },
     }),
   ],

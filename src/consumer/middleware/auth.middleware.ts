@@ -16,7 +16,7 @@ export class AuthMiddleware implements NestMiddleware {
       const consumerToken = req.headers.authorization.split('Bearer ')[1];
       try {
         const payload = await this.jwtService.verifyAsync(consumerToken, {
-          secret: process.env.JWT_SECRET_KEY,
+          secret: process.env.JWT_CONSUMER_SECRET_KEY,
         });
         // We're assigning the payload to the request object here so that we can access it in our route handlers
         req['user'] = payload;
@@ -35,7 +35,6 @@ export class ConsumerMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: NextFunction) {
     if (req['user']) {
       const user = req['user'];
-      console.log(user);
       if (user.role === 'consumer') {
         next();
       } else {
