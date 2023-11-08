@@ -12,7 +12,7 @@ import { WishlistController } from './wishlist.controller';
       { name: 'Consumer', schema: ConsumerSchema },
       { name: 'Product', schema: ProductSchema },
       { name: 'Wishlist', schema: WishlistSchema },
-    ]), // Setup the mongoose module to use the wishlist schema
+    ]), // Setup the mongoose module to use the consumer, product and wishlist schema
   ],
   providers: [WishlistService],
   controllers: [WishlistController],

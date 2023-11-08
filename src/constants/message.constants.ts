@@ -19,6 +19,9 @@ export const messageConstants = {
   VENDOR_PROFILE_UPDATED: 'Vendor profile updated successfully',
   VENDOR_DELETED: 'Vendor deleted successfully',
 
+  // admin related success messages
+  ADMIN_PROFILE_UPDATED: 'Admin profile updated successfully',
+
   // product related success messages
   PRODUCT_ADDED: 'Product added successfully',
   PRODUCT_UPDATED: 'Product updated successfully',
@@ -53,6 +56,9 @@ export const messageConstants = {
   // vendor related fail messages
   VENDOR_ALREADY_EXIST: 'Vendor already exist',
   VENDOR_NOT_EXIST: 'Vendor not exist',
+
+  // admin related fail messages
+  ADMIN_NOT_EXIST: 'Admin not exist',
 
   // product related fail messages
   PRODUCT_NOT_EXIST: 'Product not exist',

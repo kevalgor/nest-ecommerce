@@ -12,7 +12,7 @@ import { CartController } from './cart.controller';
       { name: 'Consumer', schema: ConsumerSchema },
       { name: 'Product', schema: ProductSchema },
       { name: 'Cart', schema: CartSchema },
-    ]), // Setup the mongoose module to use the cart schema
+    ]), // Setup the mongoose module to use the consumer, product and cart schema
   ],
   providers: [CartService],
   controllers: [CartController],

@@ -12,7 +12,7 @@ import { OrderController } from './order.controller';
       { name: 'Consumer', schema: ConsumerSchema },
       { name: 'Product', schema: ProductSchema },
       { name: 'Order', schema: OrderSchema },
-    ]), // Setup the mongoose module to use the order schema
+    ]), // Setup the mongoose module to use the consumer, product and order schema
   ],
   providers: [OrderService],
   controllers: [OrderController],

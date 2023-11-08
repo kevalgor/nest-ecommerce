@@ -12,7 +12,7 @@ import { ProductController } from './product.controller';
       { name: 'Vendor', schema: VendorSchema },
       { name: 'Product', schema: ProductSchema },
       { name: 'Order', schema: OrderSchema },
-    ]), // Setup the mongoose module to use the product schema
+    ]), // Setup the mongoose module to use the vendor, product and order schema
   ],
   providers: [ProductService],
   controllers: [ProductController],
